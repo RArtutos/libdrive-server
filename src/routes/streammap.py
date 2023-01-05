@@ -95,10 +95,18 @@ async def streammapFunction():
                         and title == og_title
                         and year == og_year
                     ):
-                        if file.get("videoMediaMetadata"):
-                            videoMediaMetadata = file["videoMediaMetadata"]
+                        filename = file["name"]
+                        if "1080p" in filename:
+                            video_width = 1920
+                            video_height = 1080
+                        elif "720p" in filename:
+                            video_width = 1280
+                            video_height = 720
                         else:
-                            videoMediaMetadata = {"width": "null", "height": "null"}
+                            video_width = 640
+                            video_height = 480
+                            
+                        videoMediaMetadata = {"width": video_width, "height": video_height}
                         videos.append(
                             {
                                 "name": "%sx%s"
