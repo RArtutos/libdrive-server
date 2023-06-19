@@ -20,6 +20,10 @@ def parseMovie(name):
     # Iron.Man.2008.1080p.WEBRip.DDP5.1.Atmos.x264.mkv
     reg_3 = r"^(?P<title>(?:(?!\.\d{4}).)*)\.(?P<year>\d{4}).*(?P<extention>\..*)?$"
     reg_4 = r"^(?P<year>)(?P<title>.*).*(?P<extention>\..*?$)"  # Iron Man.mkv
+
+    # Remove [GDADICTOS.COM] from the beginning of the title
+    name = re.sub(r"^\[GDADICTOS\.COM\]\s", "", name)
+    
     if re.match(reg_1, name):
         match = re.search(reg_1, name)
     elif re.match(reg_2, name):
